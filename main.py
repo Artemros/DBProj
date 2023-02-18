@@ -6,6 +6,8 @@ from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout
 import sys
 from interface.front.StartForm import *
 from typing import *
+import interface.back.add_tables
+import interface.back.add_db
 
 if __name__ == '__main__':
     print("Done")

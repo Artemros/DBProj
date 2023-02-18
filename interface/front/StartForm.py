@@ -43,8 +43,16 @@ class StartForm(QMainWindow):
         self.listSize = 10
 
         self.connection = ConnectDB.create_connection("localhost", "root", "root", "LoL")
+
+        self.connection2 = ConnectDB.create_connection("127.0.0.1", "root", "root", "MetaData")
+        self.cursor2 = self.connection2.cursor()
+        self.query2 = "select * from tablename"
+        self.cursor2.execute(self.query2)
+        self.tables = self.cursor2.fetchall()
+        self.itemFromTables = self.tables[1][1]
+
         self.cursor = self.connection.cursor()
-        self.query = "select count(*) from champion"
+        self.query = "select count(*) from " + self.itemFromTables
         self.cursor.execute(self.query)
         self.tableSize = self.cursor.fetchone()[0]
         self.maximumLP = math.ceil(self.tableSize / self.listSize)
